@@ -44,11 +44,12 @@ class SonicWallLogon(object):
     }
     AUTH_ERROR_INTERVAL = 60
 
-    def __init__(self, username, password, server_ip, login_duration):
+    def __init__(self, username, password, server_ip, server_port, login_duration):
         self.username = username
         self.password = password
         self.login_duration = login_duration
-        self.server_host = 'https://%s:444/' % server_ip
+        self.server_host = 'https://%s:%s/' % (server_ip, server_port)
+        self.server_port = server_port
         self.auth_interval = (self.login_duration - 10) * 60
 
         self.session = Session()
@@ -100,7 +101,7 @@ class SonicWallLogon(object):
         logger.info('Login performed.')
 
     def auth_confirm(self, auth_params):
-        host = self.server_host.replace(':444', ':1080')
+        host = self.server_host.replace(':%s' % self.server_port, ':1080')
         host = host.replace('https', 'http')
         cookies = {'SessId': auth_params.get('SessId')}
         self.request(host + self.URLs.get('confirm'), cookies=cookies)
@@ -132,6 +133,7 @@ sonicwall_logon = SonicWallLogon(
     config.get('Auth Credentials', 'username'),
     config.get('Auth Credentials', 'password'),
     config.get('Server Info', 'host'),
+    config.get('Server Info', 'port'),
     config.getint('Server Info', 'login_duration')
 )
 # Blocks forever
