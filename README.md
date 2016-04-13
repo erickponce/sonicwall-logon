@@ -21,6 +21,7 @@ password = <your password>
 
 [Server Info]
 host = 10.0.0.10
+port = 444
 login_duration = 600
 ```
 
