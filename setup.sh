@@ -1,10 +1,8 @@
 #!/bin/bash
 echo "\n[SonicWall auto logon setup]\n"
 
-echo "Type your username, followed by [ENTER]:"
-read USERNAME
-echo "\nType your password, followed by [ENTER]:"
-read PASSWORD 
+read -p "Type your username, followed by [ENTER]: " USERNAME
+read -s -p "Type your password, followed by [ENTER]: " PASSWORD
 
 echo "\nGenerating config file..."
 # Generate config file
