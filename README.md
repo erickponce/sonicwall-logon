@@ -8,7 +8,7 @@ Installation
 ```bash
   git clone https://github.com/erickponce/sonicwall-logon.git
   cd sonicwall-logon
-  sudo sh setup.sh
+  sudo bash setup.sh
 ```
   
 It will ask you for a SonicWall username and password.
