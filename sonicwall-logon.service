@@ -1,0 +1,9 @@
+[Unit]
+Description=SonicWall Logon by Erick Ponce Leão
+
+[Service]
+ExecStart=/bin/sh /opt/sonicwall-logon/run.sh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
