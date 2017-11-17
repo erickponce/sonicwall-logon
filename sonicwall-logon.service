@@ -4,6 +4,12 @@ Description=SonicWall Logon by Erick Ponce Leão
 [Service]
 ExecStart=/bin/sh /opt/sonicwall-logon/run.sh
 Restart=on-failure
+After=suspend.target
+After=hibernate.target
+After=hybrid-sleep.target
 
 [Install]
 WantedBy=default.target
+WantedBy=suspend.target
+WantedBy=hibernate.target
+WantedBy=hybrid-sleep.target
