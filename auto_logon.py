@@ -53,7 +53,7 @@ class SonicWallLogon(object):
         self.auth_interval = (self.login_duration - 10) * 60
 
         self.session = Session()
-        self.session.mount('https://', SSLAdapter())
+        # self.session.mount('https://', SSLAdapter())
 
     def request(self, url, method='GET', params=None, body=None, headers={}, cookies={}):
         request = Request(
