@@ -1,10 +1,10 @@
 import time
 import ssl
-import ConfigParser
+import configparser
 import argparse
 import logging
 from requests import Request, Session
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.poolmanager import PoolManager
 
@@ -15,19 +15,6 @@ logging.basicConfig(level=logging.INFO, format=FORMAT)
 logger = logging.getLogger('sonicwall-logon')
 logger.info('SonicWall Logon Started')
 
-
-class SSLAdapter(HTTPAdapter):
-    """An HTTPS Transport Adapter that uses an arbitrary SSL version."""
-
-    def __init__(self, ssl_version=None, **kwargs):
-        self.ssl_version = ssl_version
-        super(SSLAdapter, self).__init__(**kwargs)
-
-    def init_poolmanager(self, connections, maxsize, block=False):
-        self.poolmanager = PoolManager(num_pools=connections,
-                                       maxsize=maxsize,
-                                       block=block,
-                                       ssl_version=ssl.PROTOCOL_TLSv1)
 
 
 class AuthenticationError(Exception):
@@ -53,7 +40,6 @@ class SonicWallLogon(object):
         self.auth_interval = (self.login_duration - 10) * 60
 
         self.session = Session()
-        # self.session.mount('https://', SSLAdapter())
 
     def request(self, url, method='GET', params=None, body=None, headers={}, cookies={}):
         request = Request(
@@ -70,7 +56,7 @@ class SonicWallLogon(object):
         r = self.request(self.server_host + self.URLs.get('params'))
         if r.status_code != 200:
             raise AuthenticationError('Impossible to get auth params from SonicWall server.')
-        document = BeautifulSoup(r.text)
+        document = BeautifulSoup(r.text, 'html.parser')
         params = {
             'param1': document.find('input', {'name': 'param1'})['value'],
             'param2': document.find('input', {'name': 'param2'})['value'],
@@ -126,7 +112,7 @@ parser.add_argument(
     default='/etc/sonicwall-logon/auth.conf', type=str
 )
 args = parser.parse_args()
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.readfp(open(args.config))
 
 sonicwall_logon = SonicWallLogon(
