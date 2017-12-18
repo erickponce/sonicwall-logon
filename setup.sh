@@ -10,7 +10,15 @@ cat auth.conf | sed -e "s/username = /username = "$USERNAME"/" > auth.temp
 cat auth.temp | sed -e "s/password = /password = "$PASSWORD"/" > generated_auth.temp
 
 echo "Installing dependences..."
-pip install 'requests>=2.6.2' 'BeautifulSoup>=3.2.1'
+PYTHON_ENV="$HOME/venv-sonicwall"
+if [ ! -d "$PYTHON_ENV" ]; then
+    if [ ! -f "/usr/bin/virtualenv" ]; then
+        sudo apt-get install -yq virtualenv
+    fi
+    virtualenv -p /usr/bin/python3 $PYTHON_ENV
+fi
+source $PYTHON_ENV/bin/activate
+$PYTHON_ENV/bin/pip install 'requests>=2.18.4' 'beautifulsoup4==4.6.0'
 
 echo "Installing files..."
 # Install files
@@ -23,15 +31,17 @@ cp generated_auth.temp /etc/sonicwall-logon/auth.conf
 rm auth.temp
 rm generated_auth.temp
 
-cp sonicwall-logon /etc/init.d/sonicwall-logon
+# cp sonicwall-logon /etc/init.d/sonicwall-logon
 
-echo "Setting permissions..."
+#echo "Setting permissions..."
 # Set permissions
-chmod +rwx /etc/init.d/sonicwall-logon
+#chmod +rwx /etc/init.d/sonicwall-logon
 
 echo "Configuring service..."
 # Make service start with OS
-update-rc.d sonicwall-logon defaults
+# update-rc.d sonicwall-logon defaults
+systemctl enable sonicwall-logon.service
 
 # Start service
-service sonicwall-logon restart
+# service sonicwall-logon restart
+systemctl restart sonicwall-logon.service
