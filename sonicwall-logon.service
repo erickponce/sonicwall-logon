@@ -5,7 +5,7 @@ After=hibernate.target
 After=hybrid-sleep.target
 
 [Service]
-ExecStart=/bin/sh /opt/sonicwall-logon/run.sh
+ExecStart=/bin/bash /opt/sonicwall-logon/run.sh
 Restart=on-failure
 
 [Install]
