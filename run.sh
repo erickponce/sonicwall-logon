@@ -4,8 +4,8 @@ PROCESS_NAME="sonicwall-logon"
 PROCESS_BASE_PATH="/opt/"$PROCESS_NAME"/"
 PROCESS_LOG="/var/log/"$PROCESS_NAME".log"
 CONFIG_FILE_PATH="/etc/"$PROCESS_NAME"/auth.conf"
+PYTHON_ENV="/opt/sonicwall-logon/venv"
 
-PYTHON_ENV="$HOME/venv-sonicwall"
 if [ ! -d "$PYTHON_ENV" ]; then
     if [ ! -f "/usr/bin/virtualenv" ]; then
         sudo apt-get install -yq virtualenv
