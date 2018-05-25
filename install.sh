@@ -6,3 +6,4 @@ git clone https://github.com/erickponce/sonicwall-logon.git  /tmp/sonicwall-logo
 cd /tmp/sonicwall-logon
 sudo chmod a+x setup.sh
 sudo bash setup.sh
+rm -Rf /tmp/sonicwall-logon
