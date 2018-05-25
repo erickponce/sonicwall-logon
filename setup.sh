@@ -10,7 +10,7 @@ cat auth.conf | sed -e "s/username = /username = "$USERNAME"/" > auth.temp
 cat auth.temp | sed -e "s/password = /password = "$PASSWORD"/" > generated_auth.temp
 
 echo "Installing dependences..."
-PYTHON_ENV="$HOME/venv-sonicwall"
+PYTHON_ENV="/opt/sonicwall-logon/venv"
 if [ ! -d "$PYTHON_ENV" ]; then
     if [ ! -f "/usr/bin/virtualenv" ]; then
         sudo apt-get install -yq virtualenv
