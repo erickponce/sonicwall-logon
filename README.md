@@ -30,3 +30,8 @@ If you change your password, update credentials in this file and execute:
   sudo service sonicwall-logon restart
 ```
 
+
+If you want install, use this command:
+```bash
+  curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/erickponce/sonicwall-logon/master/install.sh?$(date +%s) | bash -
+```
