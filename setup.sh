@@ -31,17 +31,8 @@ cp generated_auth.temp /etc/sonicwall-logon/auth.conf
 rm auth.temp
 rm generated_auth.temp
 
-# cp sonicwall-logon /etc/init.d/sonicwall-logon
-
-#echo "Setting permissions..."
-# Set permissions
-#chmod +rwx /etc/init.d/sonicwall-logon
-
 echo "Configuring service..."
-# Make service start with OS
-# update-rc.d sonicwall-logon defaults
-systemctl enable sonicwall-logon.service
-
-# Start service
-# service sonicwall-logon restart
-systemctl restart sonicwall-logon.service
+sudo cp sonicwall-logon.service /etc/systemd/system/sonicwall-logon.service
+sudo systemctl enable /etc/systemd/system/sonicwall-logon.service
+sudo systemctl restart sonicwall-logon.service
+sudo systemctl status sonicwall-logon.service
