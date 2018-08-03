@@ -6,8 +6,8 @@ read -s -p "Type your password, followed by [ENTER]: " PASSWORD
 
 cowsay -f tux "\nGenerating config file..."
 # Generate config file
-cat auth.conf | sed "s/username = /username = $USERNAME/" > auth.temp
-cat auth.temp | sed "s/password = /password = $PASSWORD/" > auth.temp
+sed "s/username = /username = $USERNAME/"  auth.conf
+sed "s/password = /password = $PASSWORD/"  auth.conf
 
 cowsay -f tux "Installing dependences..."
 PYTHON_ENV="/opt/sonicwall-logon/venv"
@@ -27,9 +27,7 @@ cp auto_logon.py /opt/sonicwall-logon/auto_logon.py
 cp run.sh /opt/sonicwall-logon/run.sh
 
 mkdir -p /etc/sonicwall-logon
-cp generated_auth.temp /etc/sonicwall-logon/auth.conf
-rm auth.temp
-rm generated_auth.temp
+cp auth.conf /etc/sonicwall-logon/auth.conf
 
 cowsay -f tux "Configuring service..."
 sudo cp sonicwall-logon.service /etc/systemd/system/sonicwall-logon.service
