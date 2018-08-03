@@ -5,11 +5,14 @@ cowsay -f tux "\n[SonicWall auto logon setup]\n"
 
 cowsay -f tux "\nGenerating config file..."
 # Ask Username and Password from user
+unset -v USERNAME
 read -p "Type your username, followed by [ENTER]: " USERNAME
+unset -v PASSWORD
 read -s -p "Type your password, followed by [ENTER]: " PASSWORD
+
 # Generate config file
-sed "s/username = /username = $USERNAME/"  auth.conf
-sed "s/password = /password = $PASSWORD/"  auth.conf
+sed -i "s/username = /username = $USERNAME/" auth.conf
+sed -i "s/password = /password = $PASSWORD/" auth.conf
 unset -v USERNAME
 unset -v PASSWORD
 
