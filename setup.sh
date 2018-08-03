@@ -6,8 +6,8 @@ read -s -p "Type your password, followed by [ENTER]: " PASSWORD
 
 echo "\nGenerating config file..."
 # Generate config file
-cat auth.conf | sed -e "s/username = /username = "$USERNAME"/" > auth.temp
-cat auth.temp | sed -e "s/password = /password = "$PASSWORD"/" > generated_auth.temp
+cat auth.conf | sed -e "s/username = /username = $USERNAME/" > auth.temp
+cat auth.temp | sed -e "s/password = /password = $PASSWORD/" > generated_auth.temp
 
 echo "Installing dependences..."
 PYTHON_ENV="/opt/sonicwall-logon/venv"
