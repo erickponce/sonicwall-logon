@@ -1,5 +1,6 @@
 #!/bin/bash
-echo "\n[Installing SonicWall Auto Logon]\n"
+sudo apt install cowsay
+cowsay "\n[Installing SonicWall Auto Logon]\n"
 
 rm -Rf /tmp/sonicwall-logon
 git clone https://github.com/erickponce/sonicwall-logon.git  /tmp/sonicwall-logon
