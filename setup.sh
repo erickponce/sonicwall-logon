@@ -1,15 +1,15 @@
 #!/bin/bash
-toilet -f future "\n[SonicWall auto logon setup]\n"
+cowsay -f tux "\n[SonicWall auto logon setup]\n"
 
 read -p "Type your username, followed by [ENTER]: " USERNAME
 read -s -p "Type your password, followed by [ENTER]: " PASSWORD
 
-toilet -f future "\nGenerating config file..."
+cowsay -f tux "\nGenerating config file..."
 # Generate config file
 cat auth.conf | sed -e "s/username = /username = $USERNAME/" > auth.temp
 cat auth.temp | sed -e "s/password = /password = $PASSWORD/" > generated_auth.temp
 
-toilet -f future "Installing dependences..."
+cowsay -f tux "Installing dependences..."
 PYTHON_ENV="/opt/sonicwall-logon/venv"
 if [ ! -d "$PYTHON_ENV" ]; then
     if [ ! -f "/usr/bin/virtualenv" ]; then
@@ -20,7 +20,7 @@ fi
 source $PYTHON_ENV/bin/activate
 $PYTHON_ENV/bin/pip install 'requests>=2.18.4' 'beautifulsoup4==4.6.0' 'configparser==3.5.0'
 
-toilet -f future "Installing files..."
+cowsay -f tux "Installing files..."
 # Install files
 mkdir -p /opt/sonicwall-logon
 cp auto_logon.py /opt/sonicwall-logon/auto_logon.py
@@ -31,7 +31,7 @@ cp generated_auth.temp /etc/sonicwall-logon/auth.conf
 rm auth.temp
 rm generated_auth.temp
 
-toilet -f future "Configuring service..."
+cowsay -f tux "Configuring service..."
 sudo cp sonicwall-logon.service /etc/systemd/system/sonicwall-logon.service
 sudo systemctl enable /etc/systemd/system/sonicwall-logon.service
 sudo systemctl restart sonicwall-logon.service
