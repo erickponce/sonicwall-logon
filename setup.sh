@@ -29,12 +29,12 @@ $PYTHON_ENV/bin/pip install 'requests>=2.18.4' 'beautifulsoup4==4.6.0' 'configpa
 
 cowsay -f tux "Installing files..."
 # Install files
-mkdir -p /opt/sonicwall-logon
-cp auto_logon.py /opt/sonicwall-logon/auto_logon.py
-cp run.sh /opt/sonicwall-logon/run.sh
+sudo mkdir -p /opt/sonicwall-logon
+sudo cp auto_logon.py /opt/sonicwall-logon/auto_logon.py
+sudo cp run.sh /opt/sonicwall-logon/run.sh
 
-mkdir -p /etc/sonicwall-logon
-cp auth.conf /etc/sonicwall-logon/auth.conf
+sudo mkdir -p /etc/sonicwall-logon
+sudo cp auth.conf /etc/sonicwall-logon/auth.conf
 
 cowsay -f tux "Configuring service..."
 sudo cp sonicwall-logon.service /etc/systemd/system/sonicwall-logon.service
