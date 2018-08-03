@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt install cowsay
+sudo apt install cowsay -y
 cowsay -f tux "\n[Installing SonicWall Auto Logon]\n"
 
 rm -Rf /tmp/sonicwall-logon
