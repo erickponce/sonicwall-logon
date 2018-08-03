@@ -7,7 +7,7 @@ read -s -p "Type your password, followed by [ENTER]: " PASSWORD
 cowsay -f tux "\nGenerating config file..."
 # Generate config file
 cat auth.conf | sed "s/username = /username = $USERNAME/" > auth.temp
-cat auth.temp | sed "s/password = /password = $PASSWORD/" > generated_auth.temp
+cat auth.temp | sed "s/password = /password = $PASSWORD/" > auth.temp
 
 cowsay -f tux "Installing dependences..."
 PYTHON_ENV="/opt/sonicwall-logon/venv"
