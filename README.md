@@ -35,3 +35,7 @@ If you want install, use this command:
 ```bash
   curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/erickponce/sonicwall-logon/master/install.sh?$(date +%s) | bash -
 ```
+or
+```bash
+  bash <(curl -s https://raw.githubusercontent.com/erickponce/sonicwall-logon/master/install.sh)
+```
