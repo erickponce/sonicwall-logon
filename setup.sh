@@ -1,13 +1,17 @@
 #!/bin/bash
 cowsay -f tux "\n[SonicWall auto logon setup]\n"
 
-read -p "Type your username, followed by [ENTER]: " USERNAME
-read -s -p "Type your password, followed by [ENTER]: " PASSWORD
+
 
 cowsay -f tux "\nGenerating config file..."
+# Ask Username and Password from user
+read -p "Type your username, followed by [ENTER]: " USERNAME
+read -s -p "Type your password, followed by [ENTER]: " PASSWORD
 # Generate config file
 sed "s/username = /username = $USERNAME/"  auth.conf
 sed "s/password = /password = $PASSWORD/"  auth.conf
+unset -v USERNAME
+unset -v PASSWORD
 
 cowsay -f tux "Installing dependences..."
 PYTHON_ENV="/opt/sonicwall-logon/venv"
