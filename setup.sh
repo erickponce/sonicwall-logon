@@ -36,4 +36,4 @@ sudo cp sonicwall-logon.service /etc/systemd/system/sonicwall-logon.service
 sudo systemctl enable /etc/systemd/system/sonicwall-logon.service
 sudo systemctl restart sonicwall-logon.service
 sudo systemctl status sonicwall-logon.service
-sudo journalctl -f -n 100 -u sonicwall-logon.service --since today
+#sudo journalctl -f -n 100 -u sonicwall-logon.service --since today
