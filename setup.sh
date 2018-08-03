@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt install cowsay -y
 cowsay -f tux "\n[SonicWall auto logon setup]\n"
 
 read -p "Type your username, followed by [ENTER]: " USERNAME
