@@ -23,6 +23,7 @@ if [ ! -d "$PYTHON_ENV" ]; then
     virtualenv -p /usr/bin/python3 $PYTHON_ENV
 fi
 source $PYTHON_ENV/bin/activate
+$PYTHON_ENV/bin/pip install pip --upgrade
 $PYTHON_ENV/bin/pip install 'requests>=2.18.4' 'beautifulsoup4==4.6.0' 'configparser==3.5.0'
 
 echo "Installing files..."
