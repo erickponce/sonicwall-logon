@@ -13,5 +13,6 @@ if [ ! -d "$PYTHON_ENV" ]; then
     virtualenv -p /usr/bin/python3 $PYTHON_ENV
 fi
 source $PYTHON_ENV/bin/activate
+export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 
 python -u $PROCESS_BASE_PATH"auto_logon.py" -c $CONFIG_FILE_PATH
